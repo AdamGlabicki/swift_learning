@@ -8,14 +8,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var userNameTextField = UITextField()
-    var passwordTextField = UITextField()
-    var legalTermsLabel = UILabel()
-    var loginButton = UIButton()
-    var troubleButton = UIButton()
-    let daymixImage = UIImage(named: "DaymixLogo.png")
-    var logoImageView = UIImageView()
-    var blackBackgroundView = UIView()
+    private let userNameTextField = UITextField()
+    private let passwordTextField = UITextField()
+    private let legalTermsLabel = UILabel()
+    private let loginButton = UIButton()
+    private let troubleButton = UIButton()
+    private let daymixImage = UIImage(named: "DaymixLogo.png")
+    private let logoImageView = UIImageView()
+    private let blackBackgroundView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,43 +86,43 @@ class ViewController: UIViewController {
         let kBlackBottomMargin: CGFloat = -50
         let kTroubleBottomMargin: CGFloat = -20
         let kElementsHeight: CGFloat = 50
-        let kLegalTermsHeight: CGFloat = 20
+        
         NSLayoutConstraint.activate([
             logoImageView.widthAnchor.constraint(equalToConstant: kLogoWidth),
             logoImageView.heightAnchor.constraint(equalToConstant: kLogoHeight),
             logoImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             logoImageView.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
             
+            blackBackgroundView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: kTopMargin),
             blackBackgroundView.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor, constant: kLeftMargin),
             blackBackgroundView.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: kRightMargin),
-            blackBackgroundView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: kTopMargin),
             blackBackgroundView.bottomAnchor.constraint(lessThanOrEqualTo: view.layoutMarginsGuide.bottomAnchor, constant: kBlackBottomMargin),
             
             userNameTextField.heightAnchor.constraint(equalToConstant: kElementsHeight),
+            userNameTextField.topAnchor.constraint(equalTo: blackBackgroundView.topAnchor, constant: kTopMargin),
             userNameTextField.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
             userNameTextField.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: kRightMargin),
-            userNameTextField.topAnchor.constraint(equalTo: blackBackgroundView.topAnchor, constant: kTopMargin),
             
             passwordTextField.heightAnchor.constraint(equalToConstant: kElementsHeight),
+            passwordTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: kTopMargin),
             passwordTextField.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
             passwordTextField.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: kRightMargin),
-            passwordTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: kTopMargin),
             
             loginButton.heightAnchor.constraint(equalToConstant: kElementsHeight),
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: kTopMargin),
             loginButton.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
             loginButton.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: kRightMargin),
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: kTopMargin),
             
             troubleButton.heightAnchor.constraint(equalToConstant: kElementsHeight),
+            troubleButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: kTopMargin),
             troubleButton.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
             troubleButton.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: kRightMargin),
-            troubleButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: kTopMargin),
             troubleButton.bottomAnchor.constraint(equalTo: blackBackgroundView.bottomAnchor, constant: kTroubleBottomMargin),
             
-            legalTermsLabel.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            legalTermsLabel.topAnchor.constraint(greaterThanOrEqualTo: blackBackgroundView.bottomAnchor, constant: -200),
             legalTermsLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
             legalTermsLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
-            legalTermsLabel.heightAnchor.constraint(equalToConstant: kLegalTermsHeight),
+            legalTermsLabel.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
         ])
     }
 }
