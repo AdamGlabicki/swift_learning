@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var trouble: UIButton!
     let daymix = UIImage(named: "DaymixLogo.png")
     var logo: UIImageView!
-    var blackBackground: UIImageView!
+    var blackBackground: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,28 +27,10 @@ class ViewController: UIViewController {
         logo.image = daymix
         view.addSubview(logo)
         
-        NSLayoutConstraint.activate([
-            logo.widthAnchor.constraint(equalToConstant: 250),
-            logo.heightAnchor.constraint(equalToConstant: 100),
-            logo.topAnchor.constraint(equalToSystemSpacingBelow: view.layoutMarginsGuide.topAnchor, multiplier: 1),
-            logo.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-            
-        ])
-        
-        blackBackground = UIImageView()
+        blackBackground = UIView()
         blackBackground.backgroundColor = UIColor.black
         blackBackground.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(blackBackground)
-        
-        NSLayoutConstraint.activate([
-            blackBackground.widthAnchor.constraint(greaterThanOrEqualToConstant: 300),
-            blackBackground.heightAnchor.constraint(greaterThanOrEqualToConstant: 250),
-            blackBackground.leftAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.leftAnchor, constant: 5),
-            blackBackground.rightAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.rightAnchor, constant: 5),
-            blackBackground.topAnchor.constraint(greaterThanOrEqualTo: logo.bottomAnchor, constant: 10),
-            blackBackground.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-            
-        ])
         
         userName = UITextField()
         userName.translatesAutoresizingMaskIntoConstraints = false
@@ -58,16 +40,6 @@ class ViewController: UIViewController {
         userName.text = "Username"
         blackBackground.addSubview(userName)
         
-        NSLayoutConstraint.activate([
-            userName.widthAnchor.constraint(greaterThanOrEqualToConstant: 250),
-            userName.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            userName.leftAnchor.constraint(greaterThanOrEqualTo: blackBackground.leftAnchor, constant: 10),
-            userName.rightAnchor.constraint(greaterThanOrEqualTo: blackBackground.rightAnchor, constant: 10),
-            userName.topAnchor.constraint(lessThanOrEqualTo: blackBackground.topAnchor, constant: 60),
-            userName.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-            
-        ])
-        
         password = UITextField()
         password.translatesAutoresizingMaskIntoConstraints = false
         password.textAlignment = .left
@@ -76,32 +48,12 @@ class ViewController: UIViewController {
         password.text = "Password"
         blackBackground.addSubview(password)
         
-        NSLayoutConstraint.activate([
-            password.widthAnchor.constraint(greaterThanOrEqualToConstant: 250),
-            password.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            password.leftAnchor.constraint(greaterThanOrEqualTo: blackBackground.leftAnchor, constant: 10),
-            password.rightAnchor.constraint(greaterThanOrEqualTo: blackBackground.rightAnchor, constant: 10),
-            password.topAnchor.constraint(lessThanOrEqualTo: userName.bottomAnchor, constant: 60),
-            password.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-            
-        ])
-        
         login = UIButton()
         login.translatesAutoresizingMaskIntoConstraints = false
         login.setTitle("Login", for: .normal)
         login.setTitleColor(.white, for: .normal)
         login.backgroundColor = .orange
         blackBackground.addSubview(login)
-        
-        NSLayoutConstraint.activate([
-            login.widthAnchor.constraint(greaterThanOrEqualToConstant: 250),
-            login.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            login.leftAnchor.constraint(greaterThanOrEqualTo: blackBackground.leftAnchor, constant: 10),
-            login.rightAnchor.constraint(greaterThanOrEqualTo: blackBackground.rightAnchor, constant: 10),
-            login.topAnchor.constraint(lessThanOrEqualTo: password.bottomAnchor, constant: 60),
-            login.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-            
-        ])
         
         trouble = UIButton()
         trouble.translatesAutoresizingMaskIntoConstraints = false
@@ -113,16 +65,6 @@ class ViewController: UIViewController {
         trouble.backgroundColor = .black
         blackBackground.addSubview(trouble)
         
-        NSLayoutConstraint.activate([
-            trouble.widthAnchor.constraint(greaterThanOrEqualToConstant: 250),
-            trouble.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            trouble.leftAnchor.constraint(greaterThanOrEqualTo: blackBackground.leftAnchor, constant: 10),
-            trouble.rightAnchor.constraint(greaterThanOrEqualTo: blackBackground.rightAnchor, constant: 10),
-            trouble.topAnchor.constraint(greaterThanOrEqualTo: login.bottomAnchor, constant: 60),
-            trouble.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-            
-        ])
-        
         legalTerms = UILabel()
         legalTerms.translatesAutoresizingMaskIntoConstraints = false
         legalTerms.textAlignment = .center
@@ -131,9 +73,41 @@ class ViewController: UIViewController {
         view.addSubview(legalTerms)
         
         NSLayoutConstraint.activate([
-            legalTerms.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-            legalTerms.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+            logo.widthAnchor.constraint(equalToConstant: 250),
+            logo.heightAnchor.constraint(equalToConstant: 100),
+            logo.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            logo.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
             
+            blackBackground.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor, constant: 10),
+            blackBackground.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: -10),
+            blackBackground.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 10),
+            blackBackground.bottomAnchor.constraint(lessThanOrEqualTo: view.layoutMarginsGuide.bottomAnchor, constant: -50),
+            
+            userName.heightAnchor.constraint(equalToConstant: 50),
+            userName.leftAnchor.constraint(equalTo: blackBackground.leftAnchor, constant: 10),
+            userName.rightAnchor.constraint(equalTo: blackBackground.rightAnchor, constant: -10),
+            userName.topAnchor.constraint(equalTo: blackBackground.topAnchor, constant: 10),
+
+            password.heightAnchor.constraint(equalToConstant: 50),
+            password.leftAnchor.constraint(equalTo: blackBackground.leftAnchor, constant: 10),
+            password.rightAnchor.constraint(equalTo: blackBackground.rightAnchor, constant: -10),
+            password.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 10),
+
+            login.heightAnchor.constraint(equalToConstant: 50),
+            login.leftAnchor.constraint(equalTo: blackBackground.leftAnchor, constant: 10),
+            login.rightAnchor.constraint(equalTo: blackBackground.rightAnchor, constant: -10),
+            login.topAnchor.constraint(equalTo: password.bottomAnchor, constant: 10),
+
+            trouble.heightAnchor.constraint(equalToConstant: 50),
+            trouble.leftAnchor.constraint(equalTo: blackBackground.leftAnchor, constant: 10),
+            trouble.rightAnchor.constraint(equalTo: blackBackground.rightAnchor, constant: -10),
+            trouble.topAnchor.constraint(equalTo: login.bottomAnchor, constant: 10),
+            trouble.bottomAnchor.constraint(equalTo: blackBackground.bottomAnchor, constant: -20),
+            
+            legalTerms.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            legalTerms.leftAnchor.constraint(equalTo: view.leftAnchor),
+            legalTerms.rightAnchor.constraint(equalTo: view.rightAnchor),
+            legalTerms.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
 }
