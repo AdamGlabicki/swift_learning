@@ -8,15 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private let kLogoWidth: CGFloat = 250
-    private let kLogoHeight: CGFloat = 100
-    private let kLeftMargin: CGFloat = 10
-    private let kRightMargin: CGFloat = -10
-    private let kTopMargin: CGFloat = 10
-    private let kBlackBottomMargin: CGFloat = -50
-    private let kTroubleBottomMargin: CGFloat = -20
-    private let kElementsHeight: CGFloat = 50
-    private let kLegalTermsHeight: CGFloat = 20
     var userNameTextField = UITextField()
     var passwordTextField = UITextField()
     var legalTermsLabel = UILabel()
@@ -35,13 +26,19 @@ class ViewController: UIViewController {
     }
     
     func setupView(){
+        let userNameString = "username"
+        let passwordString = "password"
+        let loginString = "login"
+        let title = "trouble logging in?"
+        let legalString = "This space can be used for any legal terms."
+        
         view.backgroundColor = .gray
         
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = daymixImage
         view.addSubview(logoImageView)
         
-        blackBackgroundView.backgroundColor = UIColor.black
+        blackBackgroundView.backgroundColor = .black
         blackBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(blackBackgroundView)
         
@@ -49,24 +46,23 @@ class ViewController: UIViewController {
         userNameTextField.textAlignment = .left
         userNameTextField.backgroundColor = .white
         userNameTextField.textColor = .black
-        userNameTextField.text = "username"
+        userNameTextField.placeholder = userNameString
         blackBackgroundView.addSubview(userNameTextField)
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.textAlignment = .left
         passwordTextField.textColor = .black
         passwordTextField.backgroundColor = .white
-        passwordTextField.text = "password"
+        passwordTextField.placeholder = passwordString
         blackBackgroundView.addSubview(passwordTextField)
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.setTitle("login", for: .normal)
+        loginButton.setTitle(loginString, for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
         loginButton.backgroundColor = .orange
         blackBackgroundView.addSubview(loginButton)
         
         troubleButton.translatesAutoresizingMaskIntoConstraints = false
-        let title = "trouble logging in?"
         let titleString = NSMutableAttributedString(string: title)
         titleString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: title.count))
         troubleButton.setAttributedTitle(titleString, for: .normal)
@@ -77,11 +73,20 @@ class ViewController: UIViewController {
         legalTermsLabel.translatesAutoresizingMaskIntoConstraints = false
         legalTermsLabel.textAlignment = .center
         legalTermsLabel.textColor = .white
-        legalTermsLabel.text = "This space can be used for any legal terms."
+        legalTermsLabel.text = legalString
         view.addSubview(legalTermsLabel)
     }
     
     func setupConstraints(){
+        let kLogoWidth: CGFloat = 250
+        let kLogoHeight: CGFloat = 100
+        let kLeftMargin: CGFloat = 10
+        let kRightMargin: CGFloat = -10
+        let kTopMargin: CGFloat = 10
+        let kBlackBottomMargin: CGFloat = -50
+        let kTroubleBottomMargin: CGFloat = -20
+        let kElementsHeight: CGFloat = 50
+        let kLegalTermsHeight: CGFloat = 20
         NSLayoutConstraint.activate([
             logoImageView.widthAnchor.constraint(equalToConstant: kLogoWidth),
             logoImageView.heightAnchor.constraint(equalToConstant: kLogoHeight),
