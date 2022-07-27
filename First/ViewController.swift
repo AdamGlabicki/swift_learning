@@ -4,7 +4,7 @@
 //
 //  Created by Adam Głąbicki Airnauts on 25/07/2022.
 //
-
+import SnapKit
 import UIKit
 
 class ViewController: UIViewController {
@@ -88,44 +88,55 @@ class ViewController: UIViewController {
     
     func setupConstraints(){
         
+        logoImageView.snp.makeConstraints{make in
+            make.width.equalTo(kLogoWidth)
+            make.height.equalTo(kLogoHeight)
+            make.top.equalTo(view.snp.topMargin)
+            make.centerX.equalToSuperview()
+        }
         
-        NSLayoutConstraint.activate([
-            logoImageView.widthAnchor.constraint(equalToConstant: kLogoWidth),
-            logoImageView.heightAnchor.constraint(equalToConstant: kLogoHeight),
-            logoImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            logoImageView.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-            
-            blackBackgroundView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: kTopMargin),
-            blackBackgroundView.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor, constant: kLeftMargin),
-            blackBackgroundView.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: -kRightMargin),
-            blackBackgroundView.bottomAnchor.constraint(lessThanOrEqualTo: view.layoutMarginsGuide.bottomAnchor, constant: -kBlackBottomMargin),
-            
-            userNameTextField.heightAnchor.constraint(equalToConstant: kElementsHeight),
-            userNameTextField.topAnchor.constraint(equalTo: blackBackgroundView.topAnchor, constant: kTopMargin),
-            userNameTextField.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
-            userNameTextField.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: -kRightMargin),
-            
-            passwordTextField.heightAnchor.constraint(equalToConstant: kElementsHeight),
-            passwordTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: kTopMargin),
-            passwordTextField.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
-            passwordTextField.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: -kRightMargin),
-            
-            loginButton.heightAnchor.constraint(equalToConstant: kElementsHeight),
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: kTopMargin),
-            loginButton.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
-            loginButton.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: -kRightMargin),
-            
-            troubleButton.heightAnchor.constraint(equalToConstant: kElementsHeight),
-            troubleButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: kTopMargin),
-            troubleButton.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
-            troubleButton.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: -kRightMargin),
-            troubleButton.bottomAnchor.constraint(equalTo: blackBackgroundView.bottomAnchor, constant: -kTroubleBottomMargin),
-            
-            legalTermsLabel.topAnchor.constraint(greaterThanOrEqualTo: blackBackgroundView.bottomAnchor, constant: -kLegalTopMargin),
-            legalTermsLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
-            legalTermsLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
-            legalTermsLabel.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-        ])
+        blackBackgroundView.snp.makeConstraints{make in
+            make.top.equalTo(logoImageView.snp.bottom).offset(kTopMargin)
+            make.left.equalTo(view.snp.leftMargin).offset(kLeftMargin)
+            make.right.equalTo(view.snp.rightMargin).offset(-kRightMargin)
+            make.bottom.lessThanOrEqualTo(view.snp.bottom).offset(-kBlackBottomMargin)
+        }
+        
+        userNameTextField.snp.makeConstraints{make in
+            make.height.equalTo(kElementsHeight)
+            make.top.equalTo(blackBackgroundView.snp.topMargin).offset(kTopMargin)
+            make.left.equalTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin)
+            make.right.equalTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin)
+        }
+        
+        passwordTextField.snp.makeConstraints{make in
+            make.height.equalTo(kElementsHeight)
+            make.top.equalTo(userNameTextField.snp.bottomMargin).offset(kTopMargin)
+            make.left.equalTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin)
+            make.right.equalTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin)
+        }
+        
+        loginButton.snp.makeConstraints{make in
+            make.height.equalTo(kElementsHeight)
+            make.top.equalTo(passwordTextField.snp.bottomMargin).offset(kTopMargin)
+            make.left.equalTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin)
+            make.right.equalTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin)
+        }
+        
+        troubleButton.snp.makeConstraints{make in
+            make.height.equalTo(kElementsHeight)
+            make.top.equalTo(loginButton.snp.bottomMargin).offset(kTopMargin)
+            make.left.equalTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin)
+            make.right.equalTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin)
+            make.bottom.equalTo(blackBackgroundView.snp.bottomMargin).offset(-kTroubleBottomMargin)
+        }
+        
+        legalTermsLabel.snp.makeConstraints{make in
+            make.top.greaterThanOrEqualTo(blackBackgroundView.snp.bottomMargin).offset(-kLegalTopMargin)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.bottom.equalTo(view.snp.bottomMargin)
+        }
     }
 }
 
