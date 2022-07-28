@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     private let kBlackTopMargin: CGFloat = 10
     private let kBlackBottomMargin: CGFloat = 70
     private let kTroubleBottomMargin: CGFloat = 20
-    private let kElementsHeight: CGFloat = 50
+    private let kElementsHeight: CGFloat = 40
     private let kLegalTopMargin: CGFloat = 100
     private let userNameTextField = UITextField()
     private let passwordTextField = UITextField()
@@ -104,29 +104,29 @@ class ViewController: UIViewController {
         }
         
         userNameTextField.snp.makeConstraints{make in
-            make.height.lessThanOrEqualTo(kElementsHeight).priority(.required)
+            make.height.equalTo(kElementsHeight).priority(.required)
             make.top.lessThanOrEqualTo(blackBackgroundView.snp.topMargin).offset(kTopMargin).priority(.required)
             make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
             make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
         }
         
         passwordTextField.snp.makeConstraints{make in
-            make.height.lessThanOrEqualTo(kElementsHeight).priority(.required)
-            make.top.lessThanOrEqualTo(userNameTextField.snp.bottomMargin).offset(kTopMargin).priority(.low)
+            make.height.equalTo(kElementsHeight).priority(.required)
+            make.top.lessThanOrEqualTo(userNameTextField.snp.bottomMargin).offset(kTopMargin).priority(.medium)
             make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
             make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
         }
         
         loginButton.snp.makeConstraints{make in
-            make.height.lessThanOrEqualTo(kElementsHeight).priority(.required)
-            make.top.lessThanOrEqualTo(passwordTextField.snp.bottomMargin).offset(kTopMargin).priority(.low)
+            make.height.equalTo(kElementsHeight).priority(.required)
+            make.top.lessThanOrEqualTo(passwordTextField.snp.bottomMargin).offset(kTopMargin).priority(.medium)
             make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
             make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
         }
         
         troubleButton.snp.makeConstraints{make in
-            make.height.lessThanOrEqualTo(kElementsHeight).priority(.required)
-            make.top.lessThanOrEqualTo(loginButton.snp.bottomMargin).offset(kTopMargin).priority(.low)
+            make.height.equalTo(kElementsHeight).priority(.required)
+            make.top.lessThanOrEqualTo(loginButton.snp.bottomMargin).offset(kTopMargin).priority(.medium)
             make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
             make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
             make.bottom.greaterThanOrEqualTo(blackBackgroundView.snp.bottomMargin).offset(-kTroubleBottomMargin).priority(.required)
