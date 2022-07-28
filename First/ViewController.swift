@@ -1,10 +1,4 @@
-//
-//  ViewController.swift
-//  First
-//
-//  Created by Adam Głąbicki Airnauts on 25/07/2022.
-//
-
+import SnapKit
 import UIKit
 
 class ViewController: UIViewController {
@@ -12,11 +6,12 @@ class ViewController: UIViewController {
     private let kLogoHeight: CGFloat = 100
     private let kLeftMargin: CGFloat = 10
     private let kRightMargin: CGFloat = 10
-    private let kTopMargin: CGFloat = 10
-    private let kBlackBottomMargin: CGFloat = 50
+    private let kTopMargin: CGFloat = 70
+    private let kBlackTopMargin: CGFloat = 10
+    private let kBlackBottomMargin: CGFloat = 70
     private let kTroubleBottomMargin: CGFloat = 20
     private let kElementsHeight: CGFloat = 50
-    private let kLegalTopMargin: CGFloat = 200
+    private let kLegalTopMargin: CGFloat = 100
     private let userNameTextField = UITextField()
     private let passwordTextField = UITextField()
     private let legalTermsLabel = UILabel()
@@ -88,44 +83,61 @@ class ViewController: UIViewController {
     
     func setupConstraints(){
         
+        logoImageView.snp.makeConstraints{make in
+            make.width.lessThanOrEqualTo(kLogoWidth).priority(.required)
+            make.height.lessThanOrEqualTo(kLogoHeight).priority(.required)
+            make.top.equalTo(view.snp.topMargin).priority(.required)
+            make.centerX.equalToSuperview().priority(.required)
+        }
         
-        NSLayoutConstraint.activate([
-            logoImageView.widthAnchor.constraint(equalToConstant: kLogoWidth),
-            logoImageView.heightAnchor.constraint(equalToConstant: kLogoHeight),
-            logoImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            logoImageView.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-            
-            blackBackgroundView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: kTopMargin),
-            blackBackgroundView.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor, constant: kLeftMargin),
-            blackBackgroundView.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: -kRightMargin),
-            blackBackgroundView.bottomAnchor.constraint(lessThanOrEqualTo: view.layoutMarginsGuide.bottomAnchor, constant: -kBlackBottomMargin),
-            
-            userNameTextField.heightAnchor.constraint(equalToConstant: kElementsHeight),
-            userNameTextField.topAnchor.constraint(equalTo: blackBackgroundView.topAnchor, constant: kTopMargin),
-            userNameTextField.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
-            userNameTextField.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: -kRightMargin),
-            
-            passwordTextField.heightAnchor.constraint(equalToConstant: kElementsHeight),
-            passwordTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: kTopMargin),
-            passwordTextField.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
-            passwordTextField.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: -kRightMargin),
-            
-            loginButton.heightAnchor.constraint(equalToConstant: kElementsHeight),
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: kTopMargin),
-            loginButton.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
-            loginButton.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: -kRightMargin),
-            
-            troubleButton.heightAnchor.constraint(equalToConstant: kElementsHeight),
-            troubleButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: kTopMargin),
-            troubleButton.leftAnchor.constraint(equalTo: blackBackgroundView.leftAnchor, constant: kLeftMargin),
-            troubleButton.rightAnchor.constraint(equalTo: blackBackgroundView.rightAnchor, constant: -kRightMargin),
-            troubleButton.bottomAnchor.constraint(equalTo: blackBackgroundView.bottomAnchor, constant: -kTroubleBottomMargin),
-            
-            legalTermsLabel.topAnchor.constraint(greaterThanOrEqualTo: blackBackgroundView.bottomAnchor, constant: -kLegalTopMargin),
-            legalTermsLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
-            legalTermsLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
-            legalTermsLabel.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-        ])
+        blackBackgroundView.snp.makeConstraints{make in
+            make.top.equalTo(logoImageView.snp.bottom).offset(kBlackTopMargin).priority(.required)
+            make.left.lessThanOrEqualTo(view.snp.leftMargin).offset(kLeftMargin).priority(.required)
+            make.right.greaterThanOrEqualTo(view.snp.rightMargin).offset(-kRightMargin).priority(.required)
+            make.bottom.greaterThanOrEqualTo(view.snp.bottom).offset(-kBlackBottomMargin).priority(.required)
+        }
+        
+        userNameTextField.snp.makeConstraints{make in
+            make.height.equalTo(kElementsHeight).priority(.required)
+            make.top.greaterThanOrEqualTo(blackBackgroundView.snp.topMargin).priority(.required)
+            make.top.lessThanOrEqualTo(blackBackgroundView.snp.topMargin).offset(kTopMargin).priority(.high)
+            make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
+            make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
+        }
+        
+        passwordTextField.snp.makeConstraints{make in
+            make.height.equalTo(kElementsHeight).priority(.required)
+            make.top.greaterThanOrEqualTo(userNameTextField.snp.bottomMargin).priority(.required)
+            make.top.lessThanOrEqualTo(userNameTextField.snp.bottomMargin).offset(kTopMargin).priority(.low)
+            make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
+            make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
+        }
+        
+        loginButton.snp.makeConstraints{make in
+            make.height.equalTo(kElementsHeight).priority(.required)
+            make.top.greaterThanOrEqualTo(passwordTextField.snp.bottomMargin).priority(.required)
+            make.top.lessThanOrEqualTo(passwordTextField.snp.bottomMargin).offset(kTopMargin).priority(.low)
+            make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
+            make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
+        }
+        
+        troubleButton.snp.makeConstraints{make in
+            make.height.equalTo(kElementsHeight).priority(.required)
+            make.top.greaterThanOrEqualTo(loginButton.snp.bottomMargin).priority(.required)
+            make.top.lessThanOrEqualTo(loginButton.snp.bottomMargin).offset(kTopMargin).priority(.low)
+            make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
+            make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
+            make.bottom.greaterThanOrEqualTo(blackBackgroundView.snp.bottomMargin).offset(-kTroubleBottomMargin).priority(.low)
+            make.bottom.lessThanOrEqualTo(blackBackgroundView.snp.bottomMargin).priority(.required)
+        }
+        
+        legalTermsLabel.snp.makeConstraints{make in
+            make.top.greaterThanOrEqualTo(blackBackgroundView.snp.bottom).priority(.required)
+            make.top.lessThanOrEqualTo(blackBackgroundView.snp.bottom).offset(kLegalTopMargin).priority(.low)
+            make.left.lessThanOrEqualToSuperview().priority(.required)
+            make.right.greaterThanOrEqualToSuperview().priority(.required)
+            make.bottom.equalTo(view.snp.bottomMargin).priority(.required)
+        }
     }
 }
 
