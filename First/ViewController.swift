@@ -1,9 +1,3 @@
-//
-//  ViewController.swift
-//  First
-//
-//  Created by Adam Głąbicki Airnauts on 25/07/2022.
-//
 import SnapKit
 import UIKit
 
@@ -12,11 +6,11 @@ class ViewController: UIViewController {
     private let kLogoHeight: CGFloat = 100
     private let kLeftMargin: CGFloat = 10
     private let kRightMargin: CGFloat = 10
-    private let kTopMargin: CGFloat = 50
+    private let kTopMargin: CGFloat = 70
     private let kBlackTopMargin: CGFloat = 10
     private let kBlackBottomMargin: CGFloat = 70
     private let kTroubleBottomMargin: CGFloat = 20
-    private let kElementsHeight: CGFloat = 40
+    private let kElementsHeight: CGFloat = 50
     private let kLegalTopMargin: CGFloat = 100
     private let userNameTextField = UITextField()
     private let passwordTextField = UITextField()
@@ -100,40 +94,46 @@ class ViewController: UIViewController {
             make.top.equalTo(logoImageView.snp.bottom).offset(kBlackTopMargin).priority(.required)
             make.left.lessThanOrEqualTo(view.snp.leftMargin).offset(kLeftMargin).priority(.required)
             make.right.greaterThanOrEqualTo(view.snp.rightMargin).offset(-kRightMargin).priority(.required)
-            make.bottom.greaterThanOrEqualTo(view.snp.bottom).offset(-kBlackBottomMargin).priority(.medium)
+            make.bottom.greaterThanOrEqualTo(view.snp.bottom).offset(-kBlackBottomMargin).priority(.required)
         }
         
         userNameTextField.snp.makeConstraints{make in
             make.height.equalTo(kElementsHeight).priority(.required)
-            make.top.lessThanOrEqualTo(blackBackgroundView.snp.topMargin).offset(kTopMargin).priority(.required)
+            make.top.greaterThanOrEqualTo(blackBackgroundView.snp.topMargin).priority(.required)
+            make.top.lessThanOrEqualTo(blackBackgroundView.snp.topMargin).offset(kTopMargin).priority(.high)
             make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
             make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
         }
         
         passwordTextField.snp.makeConstraints{make in
             make.height.equalTo(kElementsHeight).priority(.required)
-            make.top.lessThanOrEqualTo(userNameTextField.snp.bottomMargin).offset(kTopMargin).priority(.medium)
+            make.top.greaterThanOrEqualTo(userNameTextField.snp.bottomMargin).priority(.required)
+            make.top.lessThanOrEqualTo(userNameTextField.snp.bottomMargin).offset(kTopMargin).priority(.low)
             make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
             make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
         }
         
         loginButton.snp.makeConstraints{make in
             make.height.equalTo(kElementsHeight).priority(.required)
-            make.top.lessThanOrEqualTo(passwordTextField.snp.bottomMargin).offset(kTopMargin).priority(.medium)
+            make.top.greaterThanOrEqualTo(passwordTextField.snp.bottomMargin).priority(.required)
+            make.top.lessThanOrEqualTo(passwordTextField.snp.bottomMargin).offset(kTopMargin).priority(.low)
             make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
             make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
         }
         
         troubleButton.snp.makeConstraints{make in
             make.height.equalTo(kElementsHeight).priority(.required)
-            make.top.lessThanOrEqualTo(loginButton.snp.bottomMargin).offset(kTopMargin).priority(.medium)
+            make.top.greaterThanOrEqualTo(loginButton.snp.bottomMargin).priority(.required)
+            make.top.lessThanOrEqualTo(loginButton.snp.bottomMargin).offset(kTopMargin).priority(.low)
             make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
             make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
-            make.bottom.greaterThanOrEqualTo(blackBackgroundView.snp.bottomMargin).offset(-kTroubleBottomMargin).priority(.required)
+            make.bottom.greaterThanOrEqualTo(blackBackgroundView.snp.bottomMargin).offset(-kTroubleBottomMargin).priority(.low)
+            make.bottom.lessThanOrEqualTo(blackBackgroundView.snp.bottomMargin).priority(.required)
         }
         
         legalTermsLabel.snp.makeConstraints{make in
-            make.top.greaterThanOrEqualTo(blackBackgroundView.snp.bottomMargin).offset(-kLegalTopMargin).priority(.required)
+            make.top.greaterThanOrEqualTo(blackBackgroundView.snp.bottom).priority(.required)
+            make.top.lessThanOrEqualTo(blackBackgroundView.snp.bottom).offset(kLegalTopMargin).priority(.low)
             make.left.lessThanOrEqualToSuperview().priority(.required)
             make.right.greaterThanOrEqualToSuperview().priority(.required)
             make.bottom.equalTo(view.snp.bottomMargin).priority(.required)
