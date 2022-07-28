@@ -12,11 +12,12 @@ class ViewController: UIViewController {
     private let kLogoHeight: CGFloat = 100
     private let kLeftMargin: CGFloat = 10
     private let kRightMargin: CGFloat = 10
-    private let kTopMargin: CGFloat = 10
-    private let kBlackBottomMargin: CGFloat = 50
+    private let kTopMargin: CGFloat = 50
+    private let kBlackTopMargin: CGFloat = 10
+    private let kBlackBottomMargin: CGFloat = 70
     private let kTroubleBottomMargin: CGFloat = 20
     private let kElementsHeight: CGFloat = 50
-    private let kLegalTopMargin: CGFloat = 200
+    private let kLegalTopMargin: CGFloat = 100
     private let userNameTextField = UITextField()
     private let passwordTextField = UITextField()
     private let legalTermsLabel = UILabel()
@@ -89,53 +90,53 @@ class ViewController: UIViewController {
     func setupConstraints(){
         
         logoImageView.snp.makeConstraints{make in
-            make.width.equalTo(kLogoWidth)
-            make.height.equalTo(kLogoHeight)
-            make.top.equalTo(view.snp.topMargin)
-            make.centerX.equalToSuperview()
+            make.width.lessThanOrEqualTo(kLogoWidth).priority(.required)
+            make.height.lessThanOrEqualTo(kLogoHeight).priority(.required)
+            make.top.equalTo(view.snp.topMargin).priority(.required)
+            make.centerX.equalToSuperview().priority(.required)
         }
         
         blackBackgroundView.snp.makeConstraints{make in
-            make.top.equalTo(logoImageView.snp.bottom).offset(kTopMargin)
-            make.left.equalTo(view.snp.leftMargin).offset(kLeftMargin)
-            make.right.equalTo(view.snp.rightMargin).offset(-kRightMargin)
-            make.bottom.lessThanOrEqualTo(view.snp.bottom).offset(-kBlackBottomMargin)
+            make.top.equalTo(logoImageView.snp.bottom).offset(kBlackTopMargin).priority(.required)
+            make.left.lessThanOrEqualTo(view.snp.leftMargin).offset(kLeftMargin).priority(.required)
+            make.right.greaterThanOrEqualTo(view.snp.rightMargin).offset(-kRightMargin).priority(.required)
+            make.bottom.greaterThanOrEqualTo(view.snp.bottom).offset(-kBlackBottomMargin).priority(.medium)
         }
         
         userNameTextField.snp.makeConstraints{make in
-            make.height.equalTo(kElementsHeight)
-            make.top.equalTo(blackBackgroundView.snp.topMargin).offset(kTopMargin)
-            make.left.equalTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin)
-            make.right.equalTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin)
+            make.height.lessThanOrEqualTo(kElementsHeight).priority(.required)
+            make.top.lessThanOrEqualTo(blackBackgroundView.snp.topMargin).offset(kTopMargin).priority(.required)
+            make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
+            make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
         }
         
         passwordTextField.snp.makeConstraints{make in
-            make.height.equalTo(kElementsHeight)
-            make.top.equalTo(userNameTextField.snp.bottomMargin).offset(kTopMargin)
-            make.left.equalTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin)
-            make.right.equalTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin)
+            make.height.lessThanOrEqualTo(kElementsHeight).priority(.required)
+            make.top.lessThanOrEqualTo(userNameTextField.snp.bottomMargin).offset(kTopMargin).priority(.low)
+            make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
+            make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
         }
         
         loginButton.snp.makeConstraints{make in
-            make.height.equalTo(kElementsHeight)
-            make.top.equalTo(passwordTextField.snp.bottomMargin).offset(kTopMargin)
-            make.left.equalTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin)
-            make.right.equalTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin)
+            make.height.lessThanOrEqualTo(kElementsHeight).priority(.required)
+            make.top.lessThanOrEqualTo(passwordTextField.snp.bottomMargin).offset(kTopMargin).priority(.low)
+            make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
+            make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
         }
         
         troubleButton.snp.makeConstraints{make in
-            make.height.equalTo(kElementsHeight)
-            make.top.equalTo(loginButton.snp.bottomMargin).offset(kTopMargin)
-            make.left.equalTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin)
-            make.right.equalTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin)
-            make.bottom.equalTo(blackBackgroundView.snp.bottomMargin).offset(-kTroubleBottomMargin)
+            make.height.lessThanOrEqualTo(kElementsHeight).priority(.required)
+            make.top.lessThanOrEqualTo(loginButton.snp.bottomMargin).offset(kTopMargin).priority(.low)
+            make.left.lessThanOrEqualTo(blackBackgroundView.snp.leftMargin).offset(kLeftMargin).priority(.high)
+            make.right.greaterThanOrEqualTo(blackBackgroundView.snp.rightMargin).offset(-kRightMargin).priority(.high)
+            make.bottom.greaterThanOrEqualTo(blackBackgroundView.snp.bottomMargin).offset(-kTroubleBottomMargin).priority(.required)
         }
         
         legalTermsLabel.snp.makeConstraints{make in
-            make.top.greaterThanOrEqualTo(blackBackgroundView.snp.bottomMargin).offset(-kLegalTopMargin)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalTo(view.snp.bottomMargin)
+            make.top.greaterThanOrEqualTo(blackBackgroundView.snp.bottomMargin).offset(-kLegalTopMargin).priority(.required)
+            make.left.lessThanOrEqualToSuperview().priority(.required)
+            make.right.greaterThanOrEqualToSuperview().priority(.required)
+            make.bottom.equalTo(view.snp.bottomMargin).priority(.required)
         }
     }
 }
