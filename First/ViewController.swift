@@ -27,6 +27,8 @@ class ViewController: UIViewController{
     private let logoImageView = UIImageView()
     private let blackBackgroundView = UIView()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -39,9 +41,20 @@ class ViewController: UIViewController{
     @objc func loginButtonPressed() {
         let secondViewController = SecoundViewControler()
         //secondViewController.delegate = self  //delegate
-        secondViewController.nameSend = { name in self.userNameTextField.text = name }
+        //secondViewController.nameSend = { self.userNameTextField.text = $0 }  //closure
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.changeName(_:)),
+            name: Notification.Name("approved"),
+            object: nil)
         navigationController?.pushViewController(secondViewController, animated: true)
         //navigationController?.present(secondViewController, animated: true)
+    }
+    
+    @objc func changeName(_ notification: Notification) {
+        if let text = notification.userInfo?["name"] as? String {
+            self.userNameTextField.text = text
+        }
     }
     
     func setupView(){

@@ -1,8 +1,6 @@
 import SnapKit
 import UIKit
 
-
-
 class SecoundViewControler: UIViewController {
     private let nameTextField = UITextField()
     private let approvalButton = UIButton()
@@ -13,7 +11,7 @@ class SecoundViewControler: UIViewController {
     private let kTopMargin: CGFloat = 20
     private let kElementsHeight: CGFloat = 50
     //weak var delegate: nameDelegate?  //delegate
-    var nameSend: ((String?) -> ())?
+    //var nameSend: ((String?) -> ())?  //closure
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +37,14 @@ class SecoundViewControler: UIViewController {
                 //if let name = self.nameTextField.text{
                     //self.delegate?.changeName(name: text) //delegate
                 //}
-            self.nameSend?(self.nameTextField.text)
+                //self.nameSend?(self.nameTextField.text)   //closure
+                if let text = self.nameTextField.text{
+                    let name:[AnyHashable: String] = ["name": text]
+                
+                NotificationCenter.default.post(
+                    name: Notification.Name("approved"),
+                    object: nil,
+                    userInfo: name)}
             }))
             alert.addAction(UIAlertAction(title: "No", style: .cancel))
             self.present(alert, animated: true)
