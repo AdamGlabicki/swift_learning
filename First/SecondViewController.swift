@@ -1,6 +1,8 @@
 import SnapKit
 import UIKit
 
+
+
 class SecoundViewControler: UIViewController {
     private let nameTextField = UITextField()
     private let approvalButton = UIButton()
@@ -10,6 +12,7 @@ class SecoundViewControler: UIViewController {
     private let kRightMargin: CGFloat = 10
     private let kTopMargin: CGFloat = 20
     private let kElementsHeight: CGFloat = 50
+    weak var delegate: nameDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,8 @@ class SecoundViewControler: UIViewController {
     @objc func approvalButtonPressed() {
         if (nameTextField.text!.count < 3) {
             nameTextField.textColor = .red
+        }else{
+            delegate?.changeName(name: nameTextField.text!)
         }
     }
     

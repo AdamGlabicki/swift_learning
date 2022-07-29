@@ -1,9 +1,13 @@
 import SnapKit
 import UIKit
 
+protocol nameDelegate: AnyObject {
+    func changeName(name: String)
+}
 
 
-class ViewController: UIViewController {
+
+class ViewController: UIViewController{
     private let kLogoWidth: CGFloat = 250
     private let kLogoHeight: CGFloat = 100
     private let kLeftMargin: CGFloat = 10
@@ -28,12 +32,13 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         setupView()
         setupConstraints()
-        
+
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
     }
     
     @objc func loginButtonPressed() {
         let secondViewController = SecoundViewControler()
+        secondViewController.delegate = self
         navigationController?.pushViewController(secondViewController, animated: true)
         //navigationController?.present(secondViewController, animated: true)
     }
@@ -143,3 +148,8 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: nameDelegate{
+    func changeName(name: String) {
+        userNameTextField.text = name
+    }
+}
