@@ -23,10 +23,6 @@ class SecoundViewControler: UIViewController {
         nameTextField.addTarget(self, action: #selector(nameTextFieldChange), for: .editingChanged)
     }
     
-    func sendDelegate(){
-        delegate?.changeName(name: nameTextField.text!)
-    }
-    
     @objc func nameTextFieldChange() {
         nameTextField.textColor = .black
     }
@@ -36,8 +32,10 @@ class SecoundViewControler: UIViewController {
             nameTextField.textColor = .red
         }else{
             let alert = UIAlertController(title: "Change name?", message: "Change name?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {alert in
-                self.sendDelegate()
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { alert in
+                if let text = self.nameTextField.text{
+                    self.delegate?.changeName(name: text)
+                }
             }))
             alert.addAction(UIAlertAction(title: "No", style: .cancel))
             self.present(alert, animated: true)
