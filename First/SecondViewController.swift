@@ -12,7 +12,8 @@ class SecoundViewControler: UIViewController {
     private let kRightMargin: CGFloat = 10
     private let kTopMargin: CGFloat = 20
     private let kElementsHeight: CGFloat = 50
-    weak var delegate: nameDelegate?
+    //weak var delegate: nameDelegate?  //delegate
+    var nameSend: ((String?) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,8 @@ class SecoundViewControler: UIViewController {
         approvalButton.addTarget(self, action: #selector(approvalButtonPressed), for: .touchUpInside)
         nameTextField.addTarget(self, action: #selector(nameTextFieldChange), for: .editingChanged)
     }
+    
+
     
     @objc func nameTextFieldChange() {
         nameTextField.textColor = .black
@@ -33,9 +36,10 @@ class SecoundViewControler: UIViewController {
         }else{
             let alert = UIAlertController(title: "Change name?", message: "Change name?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { alert in
-                if let text = self.nameTextField.text{
-                    self.delegate?.changeName(name: text)
-                }
+                //if let name = self.nameTextField.text{
+                    //self.delegate?.changeName(name: text) //delegate
+                //}
+            self.nameSend?(self.nameTextField.text)
             }))
             alert.addAction(UIAlertAction(title: "No", style: .cancel))
             self.present(alert, animated: true)

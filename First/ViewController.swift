@@ -1,9 +1,9 @@
 import SnapKit
 import UIKit
 
-protocol nameDelegate: AnyObject {
-    func changeName(name: String)
-}
+//protocol nameDelegate: AnyObject {    //delegate
+//    func changeName(name: String)
+//}
 
 
 
@@ -38,7 +38,8 @@ class ViewController: UIViewController{
     
     @objc func loginButtonPressed() {
         let secondViewController = SecoundViewControler()
-        secondViewController.delegate = self
+        //secondViewController.delegate = self  //delegate
+        secondViewController.nameSend = { name in self.userNameTextField.text = name }
         navigationController?.pushViewController(secondViewController, animated: true)
         //navigationController?.present(secondViewController, animated: true)
     }
@@ -148,8 +149,8 @@ class ViewController: UIViewController{
     }
 }
 
-extension ViewController: nameDelegate{
-    func changeName(name: String) {
-        userNameTextField.text = name
-    }
-}
+//extension ViewController: nameDelegate{   //delegate
+//    func changeName(name: String) {
+//        userNameTextField.text = name
+//    }
+//}
