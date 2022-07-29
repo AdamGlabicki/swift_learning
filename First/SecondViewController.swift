@@ -13,6 +13,24 @@ class SecoundViewControler: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        setupConstraints()
+        
+        approvalButton.addTarget(self, action: #selector(approvalButtonPressed), for: .touchUpInside)
+        nameTextField.addTarget(self, action: #selector(nameTextFieldChange), for: .editingChanged)
+    }
+    
+    @objc func nameTextFieldChange() {
+        nameTextField.textColor = .black
+    }
+    
+    @objc func approvalButtonPressed() {
+        if (nameTextField.text!.count < 3) {
+            nameTextField.textColor = .red
+        }
+    }
+    
+    func setupView(){
         view.backgroundColor = .green
         
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +44,9 @@ class SecoundViewControler: UIViewController {
         approvalButton.setTitle(approvalString, for: .normal)
         approvalButton.backgroundColor = .red
         view.addSubview(approvalButton)
-        
+    }
+    
+    func setupConstraints(){
         nameTextField.snp.makeConstraints{make in
             make.height.equalTo(kElementsHeight)
             make.left.equalTo(view.snp.leftMargin).offset(kLeftMargin)
