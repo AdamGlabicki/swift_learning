@@ -23,6 +23,10 @@ class SecoundViewControler: UIViewController {
         nameTextField.addTarget(self, action: #selector(nameTextFieldChange), for: .editingChanged)
     }
     
+    func sendDelegate(){
+        delegate?.changeName(name: nameTextField.text!)
+    }
+    
     @objc func nameTextFieldChange() {
         nameTextField.textColor = .black
     }
@@ -31,7 +35,12 @@ class SecoundViewControler: UIViewController {
         if (nameTextField.text!.count < 3) {
             nameTextField.textColor = .red
         }else{
-            delegate?.changeName(name: nameTextField.text!)
+            let alert = UIAlertController(title: "Change name?", message: "Change name?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {alert in
+                self.sendDelegate()
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel))
+            self.present(alert, animated: true)
         }
     }
     
