@@ -5,6 +5,7 @@ class SecoundViewControler: UIViewController {
     private let nameTextField = UITextField()
     private let approvalButton = UIButton()
     private let nameString = "name"
+    private let approvalString = "approve"
     private let kLeftMargin: CGFloat = 10
     private let kRightMargin: CGFloat = 10
     private let kTopMargin: CGFloat = 20
@@ -21,11 +22,23 @@ class SecoundViewControler: UIViewController {
         nameTextField.placeholder = nameString
         view.addSubview(nameTextField)
         
+        approvalButton.translatesAutoresizingMaskIntoConstraints = false
+        approvalButton.setTitle(approvalString, for: .normal)
+        approvalButton.backgroundColor = .red
+        view.addSubview(approvalButton)
+        
         nameTextField.snp.makeConstraints{make in
             make.height.equalTo(kElementsHeight)
             make.left.equalTo(view.snp.leftMargin).offset(kLeftMargin)
             make.right.equalTo(view.snp.rightMargin).offset(-kRightMargin)
             make.centerY.equalTo(view.snp.centerY)
+        }
+        
+        approvalButton.snp.makeConstraints{make in
+            make.height.equalTo(kElementsHeight)
+            make.left.equalTo(view.snp.leftMargin).offset(kLeftMargin)
+            make.right.equalTo(view.snp.rightMargin).offset(-kRightMargin)
+            make.top.equalTo(nameTextField.snp.bottom).offset(kTopMargin)
         }
     }
 }
