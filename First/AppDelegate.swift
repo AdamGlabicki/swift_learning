@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let navigationControler = UINavigationController()
+        let navigationController = UINavigationController()
         let viewContoller = ViewController()
-        navigationControler.setViewControllers([viewContoller], animated: false)
-        window.rootViewController = navigationControler
+        navigationController.setViewControllers([viewContoller], animated: false)
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         
         return true
